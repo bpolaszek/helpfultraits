@@ -1,0 +1,21 @@
+{
+  "name": "bentools/helpfultraits",
+  "type": "library",
+  "description": "Some nice traits to use with Symfony.",
+  "homepage": "https://github.com/bpolaszek/bentools-helpfultraits",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Beno!t POLASZEK",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "BenTools\\": "src/BenTools"
+    }
+  }
+}
