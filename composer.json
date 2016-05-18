@@ -17,5 +17,8 @@
     "psr-4": {
       "BenTools\\": "src/BenTools"
     }
+  },
+  "require-dev": {
+    "doctrine/orm": "^2.5"
   }
 }

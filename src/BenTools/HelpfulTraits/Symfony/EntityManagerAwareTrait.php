@@ -3,7 +3,9 @@ namespace BenTools\HelpfulTraits\Symfony;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 
 trait EntityManagerAwareTrait {
 
@@ -60,7 +62,7 @@ trait EntityManagerAwareTrait {
 
     /**
      * @param $nameOrObject
-     * @return \Doctrine\Common\Persistence\ObjectRepository
+     * @return ObjectRepository|EntityRepository
      */
     public function getRepositoryOf($nameOrObject) {
         $name = $this->resolveNameOrObject($nameOrObject);
