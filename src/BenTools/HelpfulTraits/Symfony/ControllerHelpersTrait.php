@@ -40,6 +40,8 @@ trait ControllerHelpersTrait {
     /**
      * @param string $message
      * @param \Exception|null $previous
+     *
+     * @throws NotFoundHttpException
      */
     public function throwNotFoundException($message = 'Not Found', \Exception $previous = null) {
         throw $this->createNotFoundException($message, $previous);
@@ -62,12 +64,13 @@ trait ControllerHelpersTrait {
     }
 
     /**
-     * @param string $message
+     * @param string          $message
      * @param \Exception|null $previous
-     * @return AccessDeniedException
+     *
+     * @throws AccessDeniedException
      */
     public function throwAccessDeniedException($message = 'Access Denied.', \Exception $previous = null) {
-        return $this->createAccessDeniedException($message, $previous);
+        throw $this->createAccessDeniedException($message, $previous);
     }
 
     /**
@@ -123,10 +126,11 @@ trait ControllerHelpersTrait {
     /**
      * @param string $message
      * @param \Exception|null $previous
-     * @return BadRequestHttpException
+     *
+     * @throws BadRequestHttpException
      */
     public function throwBadRequestException($message = 'Bad request.', \Exception $previous = null) {
-        return $this->createBadRequestException($message, $previous);
+        throw $this->createBadRequestException($message, $previous);
     }
 
     /**
