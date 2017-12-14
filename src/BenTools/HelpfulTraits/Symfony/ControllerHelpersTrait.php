@@ -2,6 +2,7 @@
 namespace BenTools\HelpfulTraits\Symfony;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -57,10 +58,10 @@ trait ControllerHelpersTrait {
      * @param string $message A message
      * @param \Exception|null $previous The previous exception
      *
-     * @return AccessDeniedException
+     * @return AccessDeniedHttpException
      */
     public function createAccessDeniedException($message = 'Access Denied.', \Exception $previous = null) {
-        return new AccessDeniedException($message, $previous);
+        return new AccessDeniedHttpException($message, $previous);
     }
 
     /**
