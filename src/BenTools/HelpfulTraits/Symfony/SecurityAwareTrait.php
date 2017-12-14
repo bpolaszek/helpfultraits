@@ -1,8 +1,8 @@
 <?php
 namespace BenTools\HelpfulTraits\Symfony;
 
-trait SecurityAwareTrait {
+trait SecurityAwareTrait
+{
 
     use AuthorizationCheckerAwareTrait, TokenStorageAwareTrait;
-
 }

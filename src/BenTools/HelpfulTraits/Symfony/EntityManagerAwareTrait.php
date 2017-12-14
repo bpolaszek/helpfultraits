@@ -7,7 +7,8 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
-trait EntityManagerAwareTrait {
+trait EntityManagerAwareTrait
+{
 
     /**
      * @var ManagerRegistry
@@ -17,7 +18,8 @@ trait EntityManagerAwareTrait {
     /**
      * @return ManagerRegistry
      */
-    public function getManagerRegistry() {
+    public function getManagerRegistry()
+    {
         return $this->managerRegistry;
     }
 
@@ -25,7 +27,8 @@ trait EntityManagerAwareTrait {
      * @param ManagerRegistry $managerRegistry
      * @return $this - Provides Fluent Interface
      */
-    public function setManagerRegistry(ManagerRegistry $managerRegistry = null) {
+    public function setManagerRegistry(ManagerRegistry $managerRegistry = null)
+    {
         $this->managerRegistry = $managerRegistry;
         return $this;
     }
@@ -33,7 +36,8 @@ trait EntityManagerAwareTrait {
     /**
      * @return ObjectManager|EntityManager
      */
-    public function getEntityManager($name = null) {
+    public function getEntityManager($name = null)
+    {
         return is_null($name) ? $this->managerRegistry->getManager($this->managerRegistry->getDefaultManagerName()) : $this->managerRegistry->getManager($name);
     }
 
@@ -41,7 +45,8 @@ trait EntityManagerAwareTrait {
      * @param $nameOrObject
      * @return ObjectManager|EntityManager
      */
-    public function getEntityManagerOf($nameOrObject) {
+    public function getEntityManagerOf($nameOrObject)
+    {
         return $this->managerRegistry->getManagerForClass($this->resolveNameOrObject($nameOrObject));
     }
 
@@ -49,7 +54,8 @@ trait EntityManagerAwareTrait {
      * @param $nameOrObject
      * @return string
      */
-    private function resolveNameOrObject($nameOrObject) {
+    private function resolveNameOrObject($nameOrObject)
+    {
         switch (true) {
             case is_object($nameOrObject) && $nameOrObject instanceof \Doctrine\ORM\Proxy\Proxy:
                 return get_parent_class($nameOrObject);
@@ -64,9 +70,9 @@ trait EntityManagerAwareTrait {
      * @param $nameOrObject
      * @return ObjectRepository|EntityRepository
      */
-    public function getRepositoryOf($nameOrObject) {
+    public function getRepositoryOf($nameOrObject)
+    {
         $name = $this->resolveNameOrObject($nameOrObject);
         return $this->getEntityManagerOf($name)->getRepository($name);
     }
-
 }

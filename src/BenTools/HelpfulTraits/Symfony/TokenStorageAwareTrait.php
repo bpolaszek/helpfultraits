@@ -3,7 +3,8 @@ namespace BenTools\HelpfulTraits\Symfony;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-trait TokenStorageAwareTrait {
+trait TokenStorageAwareTrait
+{
 
     /**
      * @var TokenStorageInterface
@@ -13,7 +14,8 @@ trait TokenStorageAwareTrait {
     /**
      * @return TokenStorageInterface
      */
-    public function getTokenStorage() {
+    public function getTokenStorage()
+    {
         return $this->tokenStorage;
     }
 
@@ -21,7 +23,8 @@ trait TokenStorageAwareTrait {
      * @param TokenStorageInterface $tokenStorage
      * @return $this - Provides Fluent Interface
      */
-    public function setTokenStorage(TokenStorageInterface $tokenStorage = null) {
+    public function setTokenStorage(TokenStorageInterface $tokenStorage = null)
+    {
         $this->tokenStorage = $tokenStorage;
         return $this;
     }
@@ -35,7 +38,8 @@ trait TokenStorageAwareTrait {
      *
      * @see TokenInterface::getUser()
      */
-    public function getUser() {
+    public function getUser()
+    {
         if (!$this->tokenStorage) {
             throw new \LogicException('The SecurityBundle is not registered in your application.');
         }

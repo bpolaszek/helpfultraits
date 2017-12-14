@@ -5,7 +5,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-trait RouterAwareTrait {
+trait RouterAwareTrait
+{
 
     /**
      * @var RouterInterface
@@ -15,7 +16,8 @@ trait RouterAwareTrait {
     /**
      * @return RouterInterface
      */
-    public function getRouter() {
+    public function getRouter()
+    {
         return $this->router;
     }
 
@@ -23,7 +25,8 @@ trait RouterAwareTrait {
      * @param RouterInterface $router
      * @return $this - Provides Fluent Interface
      */
-    public function setRouter(RouterInterface $router = null) {
+    public function setRouter(RouterInterface $router = null)
+    {
         $this->router = $router;
         return $this;
     }
@@ -54,7 +57,8 @@ trait RouterAwareTrait {
      *
      * @return RedirectResponse
      */
-    protected function redirectToRoute($route, array $parameters = [], $status = 302) {
+    protected function redirectToRoute($route, array $parameters = [], $status = 302)
+    {
         return new RedirectResponse($this->generateUrl($route, $parameters), $status);
     }
 }

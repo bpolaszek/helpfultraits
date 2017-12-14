@@ -4,7 +4,8 @@ namespace BenTools\HelpfulTraits\Symfony;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-trait SessionAwareTrait {
+trait SessionAwareTrait
+{
 
     /**
      * @var SessionInterface|Session
@@ -14,7 +15,8 @@ trait SessionAwareTrait {
     /**
      * @return SessionInterface|Session
      */
-    public function getSession() {
+    public function getSession()
+    {
         return $this->session;
     }
 
@@ -22,7 +24,8 @@ trait SessionAwareTrait {
      * @param SessionInterface $session
      * @return $this - Provides Fluent Interface
      */
-    public function setSession(SessionInterface $session = null) {
+    public function setSession(SessionInterface $session = null)
+    {
         $this->session = $session;
         return $this;
     }
@@ -35,12 +38,13 @@ trait SessionAwareTrait {
      *
      * @throws \LogicException
      */
-    protected function addFlash($type, $message) {
+    protected function addFlash($type, $message)
+    {
         if (empty($this->session)) {
             throw new \LogicException('You can not use the addFlash method if sessions are disabled.');
         }
-        if (is_callable([$this->session, 'getFlashBag']))
+        if (is_callable([$this->session, 'getFlashBag'])) {
             $this->session->getFlashBag()->add($type, $message);
+        }
     }
-
 }

@@ -8,7 +8,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-trait ControllerHelpersTrait {
+trait ControllerHelpersTrait
+{
 
     /**
      * Returns a RedirectResponse to the given URL.
@@ -18,7 +19,8 @@ trait ControllerHelpersTrait {
      *
      * @return RedirectResponse
      */
-    public function redirect($url, $status = 302) {
+    public function redirect($url, $status = 302)
+    {
         return new RedirectResponse($url, $status);
     }
 
@@ -34,7 +36,8 @@ trait ControllerHelpersTrait {
      *
      * @return NotFoundHttpException
      */
-    public function createNotFoundException($message = 'Not Found', \Exception $previous = null) {
+    public function createNotFoundException($message = 'Not Found', \Exception $previous = null)
+    {
         return new NotFoundHttpException($message, $previous);
     }
 
@@ -44,7 +47,8 @@ trait ControllerHelpersTrait {
      *
      * @throws NotFoundHttpException
      */
-    public function throwNotFoundException($message = 'Not Found', \Exception $previous = null) {
+    public function throwNotFoundException($message = 'Not Found', \Exception $previous = null)
+    {
         throw $this->createNotFoundException($message, $previous);
     }
 
@@ -60,7 +64,8 @@ trait ControllerHelpersTrait {
      *
      * @return AccessDeniedHttpException
      */
-    public function createAccessDeniedException($message = 'Access Denied.', \Exception $previous = null) {
+    public function createAccessDeniedException($message = 'Access Denied.', \Exception $previous = null)
+    {
         return new AccessDeniedHttpException($message, $previous);
     }
 
@@ -70,7 +75,8 @@ trait ControllerHelpersTrait {
      *
      * @throws AccessDeniedException
      */
-    public function throwAccessDeniedException($message = 'Access Denied.', \Exception $previous = null) {
+    public function throwAccessDeniedException($message = 'Access Denied.', \Exception $previous = null)
+    {
         throw $this->createAccessDeniedException($message, $previous);
     }
 
@@ -84,7 +90,8 @@ trait ControllerHelpersTrait {
      *
      * @throws \LogicException
      */
-    protected function isGranted($attributes, $object = null) {
+    protected function isGranted($attributes, $object = null)
+    {
         if (empty($this->authorizationChecker)) {
             throw new \LogicException('The AuthorizationChecker is not injected.');
         }
@@ -102,7 +109,8 @@ trait ControllerHelpersTrait {
      *
      * @throws AccessDeniedException
      */
-    protected function denyAccessUnlessGranted($attributes, $object = null, $message = 'Access Denied.') {
+    protected function denyAccessUnlessGranted($attributes, $object = null, $message = 'Access Denied.')
+    {
         if (!$this->isGranted($attributes, $object)) {
             throw $this->createAccessDeniedException($message);
         }
@@ -120,7 +128,8 @@ trait ControllerHelpersTrait {
      *
      * @return BadRequestHttpException
      */
-    public function createBadRequestException($message = 'Bad request.', \Exception $previous = null) {
+    public function createBadRequestException($message = 'Bad request.', \Exception $previous = null)
+    {
         return new BadRequestHttpException($message, $previous);
     }
 
@@ -130,7 +139,8 @@ trait ControllerHelpersTrait {
      *
      * @throws BadRequestHttpException
      */
-    public function throwBadRequestException($message = 'Bad request.', \Exception $previous = null) {
+    public function throwBadRequestException($message = 'Bad request.', \Exception $previous = null)
+    {
         throw $this->createBadRequestException($message, $previous);
     }
 
@@ -138,10 +148,11 @@ trait ControllerHelpersTrait {
      * @param callable $toDoLater
      * @param int $priority
      */
-    public function deferAfterResponse(callable $toDoLater, $priority = 0) {
-        if (empty($this->eventDispatcher))
+    public function deferAfterResponse(callable $toDoLater, $priority = 0)
+    {
+        if (empty($this->eventDispatcher)) {
             throw new \LogicException("You can not use deferAfterResponse if the event dispatcher is not injected.");
+        }
         $this->eventDispatcher->addListener(KernelEvents::TERMINATE, $toDoLater, $priority);
     }
-
 }

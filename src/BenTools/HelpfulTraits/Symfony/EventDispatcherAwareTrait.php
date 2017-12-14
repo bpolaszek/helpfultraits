@@ -3,7 +3,8 @@ namespace BenTools\HelpfulTraits\Symfony;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-trait EventDispatcherAwareTrait {
+trait EventDispatcherAwareTrait
+{
 
     /**
      * @var EventDispatcherInterface
@@ -13,7 +14,8 @@ trait EventDispatcherAwareTrait {
     /**
      * @return EventDispatcherInterface
      */
-    public function getEventDispatcher() {
+    public function getEventDispatcher()
+    {
         return $this->eventDispatcher;
     }
 
@@ -21,9 +23,9 @@ trait EventDispatcherAwareTrait {
      * @param EventDispatcherInterface $eventDispatcher
      * @return $this - Provides Fluent Interface
      */
-    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher = null) {
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher = null)
+    {
         $this->eventDispatcher = $eventDispatcher;
         return $this;
     }
-
 }

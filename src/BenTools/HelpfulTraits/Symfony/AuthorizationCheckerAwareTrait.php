@@ -3,7 +3,8 @@ namespace BenTools\HelpfulTraits\Symfony;
 
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
-trait AuthorizationCheckerAwareTrait {
+trait AuthorizationCheckerAwareTrait
+{
 
     /**
      * @var AuthorizationCheckerInterface
@@ -13,7 +14,8 @@ trait AuthorizationCheckerAwareTrait {
     /**
      * @return AuthorizationCheckerInterface
      */
-    public function getAuthorizationChecker() {
+    public function getAuthorizationChecker()
+    {
         return $this->authorizationChecker;
     }
 
@@ -21,9 +23,9 @@ trait AuthorizationCheckerAwareTrait {
      * @param AuthorizationCheckerInterface $authorizationChecker
      * @return $this - Provides Fluent Interface
      */
-    public function setAuthorizationChecker(AuthorizationCheckerInterface $authorizationChecker = null) {
+    public function setAuthorizationChecker(AuthorizationCheckerInterface $authorizationChecker = null)
+    {
         $this->authorizationChecker = $authorizationChecker;
         return $this;
     }
-
 }
