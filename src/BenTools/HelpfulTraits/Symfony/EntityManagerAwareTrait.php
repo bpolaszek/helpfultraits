@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityRepository;
 trait EntityManagerAwareTrait
 {
     /**
+     * @param string|null $name
      * @return ObjectManager|EntityManager
      */
     protected function getEntityManager($name = null)
@@ -23,28 +24,28 @@ trait EntityManagerAwareTrait
     }
 
     /**
-     * @param $nameOrObject
+     * @param $class - An object or a class name
      * @return ObjectManager|EntityManager
      */
-    protected function getEntityManagerOf($nameOrObject)
+    protected function getEntityManagerOf($class)
     {
         if (!$this->managerRegistry) {
             throw new \LogicException('Doctrine has not been properly injected.');
         }
-        if (is_object($nameOrObject)) {
-            $class = ClassUtils::getClass($nameOrObject);
+        if (is_object($class)) {
+            $class = ClassUtils::getClass($class);
         }
         return $this->managerRegistry->getManagerForClass($class);
     }
 
     /**
-     * @param $nameOrObject
+     * @param $class - An object or a class name
      * @return ObjectRepository|EntityRepository
      */
-    protected function getRepositoryOf($nameOrObject)
+    protected function getRepositoryOf($class)
     {
-        if (is_object($nameOrObject)) {
-            $class = ClassUtils::getClass($nameOrObject);
+        if (is_object($class)) {
+            $class = ClassUtils::getClass($class);
         }
         return $this->getEntityManagerOf($class)->getRepository($class);
     }
