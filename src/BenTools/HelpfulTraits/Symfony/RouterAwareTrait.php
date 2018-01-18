@@ -9,29 +9,6 @@ trait RouterAwareTrait
 {
 
     /**
-     * @var RouterInterface
-     */
-    protected $router;
-
-    /**
-     * @return RouterInterface
-     */
-    public function getRouter()
-    {
-        return $this->router;
-    }
-
-    /**
-     * @param RouterInterface $router
-     * @return $this - Provides Fluent Interface
-     */
-    public function setRouter(RouterInterface $router = null)
-    {
-        $this->router = $router;
-        return $this;
-    }
-
-    /**
      * Generates a URL from the given parameters.
      *
      * @param string $route         The name of the route
@@ -42,8 +19,12 @@ trait RouterAwareTrait
      *
      * @see UrlGeneratorInterface
      */
-    public function generateUrl($route, $parameters = array(), $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
+    protected function generateUrl($route, $parameters = array(), $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
     {
+        if (!$this->router) {
+            throw new \LogicException('The router service has not been properly injected.');
+        }
+
         return $this->router->generate($route, $parameters, $referenceType);
     }
 
