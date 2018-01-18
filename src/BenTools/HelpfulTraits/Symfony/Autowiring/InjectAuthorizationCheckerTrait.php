@@ -15,7 +15,7 @@ trait InjectAuthorizationCheckerTrait
      * @param AuthorizationCheckerInterface $authorizationChecker
      * @required
      */
-    public function setAuthorizationChecker($authorizationChecker): void
+    public function setAuthorizationChecker(AuthorizationCheckerInterface $authorizationChecker): void
     {
         $this->authorizationChecker = $authorizationChecker;
     }
