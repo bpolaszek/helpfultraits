@@ -4,7 +4,7 @@ namespace BenTools\HelpfulTraits\Symfony\Autowiring;
 
 use Symfony\Component\Templating\EngineInterface;
 
-trait InjectTemplateEngineTrai
+trait InjectTemplateEngineTrait
 {
 
     /**
